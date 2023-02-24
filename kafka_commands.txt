@@ -1,0 +1,20 @@
+
+# create topic 
+docker compose exec kafkabroker \
+kafka-topics --bootstrap-server kafkabroker:9092 \
+             --create \
+             --topic test
+
+
+# send message
+docker compose exec --interactive --tty kafkabroker \
+kafka-console-producer --bootstrap-server kafkabroker:9092 \
+                       --topic test
+
+
+# read message
+
+docker compose exec --interactive --tty kafkabroker \
+kafka-console-consumer --bootstrap-server kafkabroker:9092 \
+                       --topic test \
+                       --from-beginning
